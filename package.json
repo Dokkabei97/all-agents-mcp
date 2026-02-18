@@ -9,9 +9,11 @@
 	},
 	"keywords": ["mcp", "ai", "agents", "claude", "codex", "gemini", "copilot", "orchestration"],
 	"license": "MIT",
+	"author": "Dokkabei97",
+	"homepage": "https://github.com/Dokkabei97/all-agents-mcp#readme",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/mingyuShim94/aa-mcp.git"
+		"url": "https://github.com/Dokkabei97/all-agents-mcp.git"
 	},
 	"scripts": {
 		"build": "tsc",
