@@ -1,0 +1,41 @@
+{
+	"name": "all-agents-mcp",
+	"version": "1.0.0",
+	"description": "All Agents MCP - Multi AI CLI Agent Orchestration Server",
+	"type": "module",
+	"main": "dist/index.js",
+	"bin": {
+		"aa-mcp": "dist/index.js"
+	},
+	"keywords": ["mcp", "ai", "agents", "claude", "codex", "gemini", "copilot", "orchestration"],
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mingyuShim94/aa-mcp.git"
+	},
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"start": "node dist/index.js",
+		"lint": "biome check --write .",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"prepare": "npm run build"
+	},
+	"dependencies": {
+		"@modelcontextprotocol/sdk": "^1.12.1",
+		"which": "^5.0.0",
+		"zod": "^3.24.4"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@types/node": "^22.15.3",
+		"@types/which": "^3.0.4",
+		"typescript": "^5.8.3",
+		"vitest": "^3.1.2"
+	},
+	"engines": {
+		"node": ">=22.0.0"
+	},
+	"files": ["dist"]
+}
