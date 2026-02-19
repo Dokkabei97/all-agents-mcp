@@ -1,0 +1,53 @@
+name: Feature Request
+description: Suggest a new feature or improvement.
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for your feature suggestion!
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem or inconvenience does this feature solve?
+      placeholder: "When I try to ..., I find it difficult because ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the feature you'd like to see added.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Have you considered any alternative approaches?
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - New agent support
+        - New tool
+        - Existing tool improvement
+        - Configuration / Environment variables
+        - Plugin / Skills
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Information
+      description: Any references, screenshots, or related issues.

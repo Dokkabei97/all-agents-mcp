@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions & Discussions
+    url: https://github.com/Dokkabei97/all-agents-mcp/issues
+    about: For questions or general discussions, please use GitHub Issues.

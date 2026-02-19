@@ -20,9 +20,11 @@
 		"dev": "tsc --watch",
 		"start": "node dist/index.js",
 		"lint": "biome check --write .",
+		"lint:check": "biome check .",
 		"test": "vitest run",
 		"test:watch": "vitest",
-		"prepare": "npm run build"
+		"prepare": "npm run build",
+		"prepublishOnly": "npm run lint:check && npm test"
 	},
 	"dependencies": {
 		"@modelcontextprotocol/sdk": "^1.12.1",
@@ -39,5 +41,5 @@
 	"engines": {
 		"node": ">=22.0.0"
 	},
-	"files": ["dist"]
+	"files": ["dist", ".claude-plugin", ".mcp.json", "skills", "commands", "hooks", "scripts"]
 }

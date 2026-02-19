@@ -1,0 +1,23 @@
+{
+	"name": "all-agents-mcp",
+	"owner": {
+		"name": "Dokkabei97",
+		"email": "dokkabei97@gmail.com"
+	},
+	"metadata": {
+		"description": "Multi AI CLI Agent Orchestration — Claude Code, Codex, Gemini CLI, Copilot CLI",
+		"version": "1.0.0"
+	},
+	"plugins": [
+		{
+			"name": "all-agents-mcp",
+			"source": "./",
+			"description": "Orchestrate multiple AI CLI agents (Codex, Gemini, Copilot) through a unified MCP interface with 13 tools and 6 skills",
+			"version": "1.0.0",
+			"category": "development",
+			"keywords": ["mcp", "ai", "agents", "orchestration", "multi-agent"],
+			"license": "MIT",
+			"homepage": "https://github.com/Dokkabei97/all-agents-mcp"
+		}
+	]
+}

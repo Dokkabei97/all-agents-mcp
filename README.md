@@ -50,25 +50,31 @@ In **enterprise environments**, teams often share a common `CLAUDE.md` managed a
 
 ## Installation
 
-### Via npm (recommended)
+### Claude Code
+
+#### As a Plugin (recommended)
+
+```bash
+# 1. Add marketplace
+/plugin marketplace add Dokkabei97/all-agents-mcp
+
+# 2. Install plugin
+/plugin install all-agents-mcp
+```
+
+This installs all-agents-mcp as a Claude Code plugin, giving you:
+- 6 skills (`/all-agents-mcp:ask`, `/all-agents-mcp:ask-all`, `/all-agents-mcp:delegate`, `/all-agents-mcp:review`, `/all-agents-mcp:debug`, `/all-agents-mcp:agents`)
+- 2 commands (`/all-agents-mcp:status`, `/all-agents-mcp:models`)
+- Automatic MCP server connection via `npx`
+- Session start health checks
+
+#### As MCP Server
 
 ```bash
 claude mcp add all-agents-mcp -- npx -y all-agents-mcp
 ```
 
-### From source
-
-```bash
-git clone https://github.com/mingyuShim94/all-agents-mcp.git
-cd all-agents-mcp
-npm install
-npm run build
-claude mcp add all-agents-mcp -- node /path/to/all-agents-mcp/dist/index.js
-```
-
-### Manual MCP configuration
-
-Add to your Claude Code MCP settings (`~/.claude.json`):
+Or manually add to `~/.claude.json`:
 
 ```json
 {
@@ -80,6 +86,99 @@ Add to your Claude Code MCP settings (`~/.claude.json`):
   }
 }
 ```
+
+### Codex CLI
+
+```bash
+codex mcp add all-agents-mcp -- npx -y all-agents-mcp
+```
+
+Or manually add to `~/.codex/config.toml`:
+
+```toml
+[mcp_servers.all-agents-mcp]
+command = "npx"
+args = ["-y", "all-agents-mcp"]
+
+[mcp_servers.all-agents-mcp.env]
+AA_MCP_LOG_LEVEL = "warn"
+```
+
+### Gemini CLI
+
+```bash
+gemini mcp add all-agents-mcp npx -y all-agents-mcp
+```
+
+Or manually add to `~/.gemini/settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "all-agents-mcp": {
+      "command": "npx",
+      "args": ["-y", "all-agents-mcp"]
+    }
+  }
+}
+```
+
+### Copilot CLI
+
+Add to `~/.copilot/mcp-config.json`:
+
+```json
+{
+  "servers": [
+    {
+      "name": "all-agents-mcp",
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "all-agents-mcp"]
+    }
+  ]
+}
+```
+
+### From Source
+
+```bash
+git clone https://github.com/Dokkabei97/all-agents-mcp.git
+cd all-agents-mcp
+npm install
+npm run build
+
+# Claude Code
+claude mcp add all-agents-mcp -- node /path/to/all-agents-mcp/dist/index.js
+
+# Codex
+codex mcp add all-agents-mcp -- node /path/to/all-agents-mcp/dist/index.js
+
+# Gemini CLI
+gemini mcp add all-agents-mcp node /path/to/all-agents-mcp/dist/index.js
+```
+
+## Plugin Skills & Commands
+
+When installed as a Claude Code plugin, the following skills and commands are available:
+
+### Skills
+
+| Skill | Usage | Description |
+|-------|-------|-------------|
+| `ask` | `/all-agents-mcp:ask codex <question>` | Ask a specific agent a question |
+| `ask-all` | `/all-agents-mcp:ask-all <question>` | Ask all agents in parallel and compare |
+| `delegate` | `/all-agents-mcp:delegate <task>` | Auto-analyze complexity and route to agent(s) |
+| `review` | `/all-agents-mcp:review codex [focus]` | Code review by an external agent |
+| `debug` | `/all-agents-mcp:debug gemini <error>` | Debug an error with an external agent |
+| `agents` | `/all-agents-mcp:agents` | Show all agents status and health |
+
+### Commands
+
+| Command | Usage | Description |
+|---------|-------|-------------|
+| `status` | `/all-agents-mcp:status` | Quick health check of all agents |
+| `models` | `/all-agents-mcp:models` | List available models for all agents |
 
 ## Tools (13)
 
