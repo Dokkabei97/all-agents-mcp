@@ -71,12 +71,14 @@ Some multi-agent tools work by extracting OAuth tokens from other AI services an
 #### As a Plugin (recommended)
 
 ```bash
-# 1. Add marketplace
-/plugin marketplace add Dokkabei97/all-agents-mcp
+# 1. Add marketplace (includes all Dokkabei97 plugins)
+/plugin marketplace add Dokkabei97/claude-plugins
 
 # 2. Install plugin
 /plugin install all-agents-mcp
 ```
+
+> You can also add the plugin repository directly: `/plugin marketplace add Dokkabei97/all-agents-mcp`
 
 This installs all-agents-mcp as a Claude Code plugin, giving you:
 - 6 skills (`/all-agents-mcp:ask`, `/all-agents-mcp:ask-all`, `/all-agents-mcp:delegate`, `/all-agents-mcp:review`, `/all-agents-mcp:debug`, `/all-agents-mcp:agents`)
