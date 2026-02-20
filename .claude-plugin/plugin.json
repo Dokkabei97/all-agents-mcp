@@ -2,7 +2,10 @@
 	"name": "all-agents-mcp",
 	"version": "1.0.0",
 	"description": "Multi AI CLI Agent Orchestration — Claude Code, Codex, Gemini CLI, Copilot CLI를 하나의 인터페이스로 오케스트레이션합니다.",
-	"author": "Dokkabei97",
+	"author": {
+		"name": "Dokkabei97",
+		"url": "https://github.com/Dokkabei97"
+	},
 	"repository": "https://github.com/Dokkabei97/all-agents-mcp",
 	"license": "MIT",
 	"keywords": ["mcp", "ai", "agents", "orchestration", "multi-agent", "codex", "gemini", "copilot"]

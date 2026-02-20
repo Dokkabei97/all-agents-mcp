@@ -25,6 +25,22 @@ However, this project was intentionally built as a standalone **MCP server** for
 
 In **enterprise environments**, teams often share a common `CLAUDE.md` managed at the organization or repository level. Embedding agent orchestration logic into `CLAUDE.md` would conflict with or pollute these shared configurations. By encapsulating the orchestration as an **MCP server**, the multi-agent capability becomes a modular, pluggable extension — completely independent of any existing `CLAUDE.md` setup. This allows teams to adopt cross-agent workflows without modifying their shared development guidelines.
 
+## Safe by Design — No OAuth Token Hijacking
+
+Some multi-agent tools work by extracting OAuth tokens from other AI services and calling their APIs directly. This approach (used by projects like [OpenCode](https://github.com/nicepkg/OpenCode)) violates the terms of service of those platforms and can result in **account suspension or permanent bans**.
+
+**all-agents-mcp takes a fundamentally different approach.** It invokes each agent's **official CLI binary** (`claude`, `codex`, `gemini`, `copilot`) as a child process — exactly the same way a human would use them in a terminal. No tokens are extracted, no APIs are called behind the scenes, and no authentication is bypassed.
+
+| | all-agents-mcp | OAuth token hijacking |
+|---|---|---|
+| **How it works** | Calls official CLI commands directly | Extracts tokens from browser/config and calls APIs |
+| **Authentication** | Uses each CLI's own auth flow | Steals OAuth tokens from other services |
+| **ToS compliance** | Fully compliant | Violates platform terms of service |
+| **Account risk** | None | Suspension or permanent ban |
+| **Billing** | Normal CLI usage billing | Unpredictable — may trigger abuse detection |
+
+> Each CLI agent manages its own authentication, billing, and rate limits. all-agents-mcp is simply a process orchestrator — it doesn't touch your credentials.
+
 ## Features
 
 - **Single-agent queries** — Ask a specific agent with `ask_agent`
