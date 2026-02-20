@@ -2,8 +2,14 @@
 	"hooks": {
 		"SessionStart": [
 			{
-				"command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/check-setup.sh",
-				"timeout": 10000
+				"matcher": "startup",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/check-setup.sh",
+						"timeout": 10000
+					}
+				]
 			}
 		]
 	}
