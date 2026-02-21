@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-all-agents-mcp is a stdio-based MCP server that orchestrates multiple AI CLI agents (Claude Code, Codex, Gemini CLI, Copilot CLI) through a unified interface. Exposes 13 tools and 3 resources.
+all-agents-mcp is a stdio-based MCP server that orchestrates multiple AI CLI agents (Claude Code, Codex, Gemini CLI, Copilot CLI) through a unified interface. Exposes 14 tools and 3 resources.
 
 **Development methodology**: This project follows [AIDE (Agent-Informed Development Engineering) v1.0](./AIDE-REFERENCE.md) — a software development methodology for the agentic era. See `AIDE-REFERENCE.md` for the full reference. Key adopted principles noted below with `[AIDE P#]` tags.
 
@@ -33,7 +33,7 @@ Debug logging: `AA_MCP_LOG_LEVEL=debug node dist/index.js` (levels: debug, info,
 src/
 ├── agents/         # Agent abstraction — IAgent interface + per-agent implementations
 ├── orchestrator/   # Process spawning, parallel execution, complexity analysis, verification
-├── tools/          # 13 MCP tool definitions (one file = one tool)
+├── tools/          # 14 MCP tool definitions (one file = one tool)
 ├── resources/      # 3 MCP resource definitions
 ├── session/        # File-based JSON session storage (~/.all-agents-mcp/sessions/)
 ├── config/         # Env var config loader (AA_MCP_* overrides) + Zod schema
