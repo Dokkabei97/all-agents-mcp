@@ -26,6 +26,7 @@ export class CodexAgent extends BaseAgent {
 
 	override async execute(options: ExecutionOptions): Promise<AgentResponse> {
 		const model = options.model ?? this.getDefaultModel();
+		const effectiveTimeout = options.timeout ?? this.getTimeoutForModel(model);
 		const outputFile = join(tmpdir(), `codex-output-${randomUUID()}.txt`);
 		const analysisLevel = options.analysisLevel ?? this.config.defaultAnalysisLevel ?? "medium";
 
@@ -41,12 +42,14 @@ export class CodexAgent extends BaseAgent {
 			"-",
 		];
 
-		logger.info(`Executing Codex with model ${model}, analysis level ${analysisLevel}`);
+		logger.info(
+			`Executing Codex with model ${model}, analysis level ${analysisLevel} (timeout: ${effectiveTimeout}ms)`,
+		);
 
 		const result = await spawnAgent({
 			command: this.cliCommand,
 			args,
-			timeout: options.timeout,
+			timeout: effectiveTimeout,
 			cwd: options.cwd,
 			stdin: options.context ? `${options.context}\n\n${options.prompt}` : options.prompt,
 		});
@@ -59,7 +62,7 @@ export class CodexAgent extends BaseAgent {
 				content: "",
 				durationMs: result.durationMs,
 				exitCode: 124,
-				error: `Timed out after ${options.timeout ?? 120000}ms`,
+				error: `Timed out after ${effectiveTimeout}ms`,
 			};
 		}
 

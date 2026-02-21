@@ -8,6 +8,7 @@ import type {
 	ExecutionOptions,
 	HealthStatus,
 	IAgent,
+	ModelConfig,
 } from "./types.js";
 
 export abstract class BaseAgent implements IAgent {
@@ -27,7 +28,18 @@ export abstract class BaseAgent implements IAgent {
 	}
 
 	getModels(): string[] {
+		return this.config.models.map((m) => m.name);
+	}
+
+	getModelConfigs(): ModelConfig[] {
 		return this.config.models;
+	}
+
+	protected getTimeoutForModel(model: string): number {
+		const modelConfig = this.config.models.find((m) => m.name === model);
+		if (modelConfig?.timeoutSeconds) return modelConfig.timeoutSeconds * 1000;
+		if (this.config.defaultTimeoutSeconds) return this.config.defaultTimeoutSeconds * 1000;
+		return 120_000;
 	}
 
 	getDefaultModel(): string {
@@ -36,9 +48,12 @@ export abstract class BaseAgent implements IAgent {
 
 	async execute(options: ExecutionOptions): Promise<AgentResponse> {
 		const model = options.model ?? this.getDefaultModel();
-		const spawnOptions = this.buildSpawnOptions(options, model);
+		const effectiveTimeout = options.timeout ?? this.getTimeoutForModel(model);
+		const spawnOptions = this.buildSpawnOptions({ ...options, timeout: effectiveTimeout }, model);
 
-		logger.info(`Executing ${this.displayName} with model ${model}`);
+		logger.info(
+			`Executing ${this.displayName} with model ${model} (timeout: ${effectiveTimeout}ms)`,
+		);
 
 		const result = await spawnAgent(spawnOptions);
 
@@ -49,7 +64,7 @@ export abstract class BaseAgent implements IAgent {
 				content: "",
 				durationMs: result.durationMs,
 				exitCode: 124,
-				error: `Timed out after ${options.timeout ?? 120000}ms`,
+				error: `Timed out after ${effectiveTimeout}ms`,
 			};
 		}
 

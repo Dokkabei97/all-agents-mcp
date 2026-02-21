@@ -8,6 +8,7 @@ export interface IAgent {
 
 	isAvailable(): Promise<boolean>;
 	getModels(): string[];
+	getModelConfigs(): ModelConfig[];
 	getDefaultModel(): string;
 	execute(options: ExecutionOptions): Promise<AgentResponse>;
 	healthCheck(): Promise<HealthStatus>;
@@ -40,8 +41,14 @@ export interface HealthStatus {
 	error?: string;
 }
 
+export interface ModelConfig {
+	name: string;
+	timeoutSeconds?: number;
+}
+
 export interface AgentConfig {
 	default: string;
-	models: string[];
+	models: ModelConfig[];
 	defaultAnalysisLevel?: "low" | "medium" | "high" | "xhigh";
+	defaultTimeoutSeconds?: number;
 }

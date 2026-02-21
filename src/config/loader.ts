@@ -1,5 +1,5 @@
 import defaultModels from "./models.json" with { type: "json" };
-import { MODELS_CONFIG_SCHEMA, type ModelsConfig } from "./schema.js";
+import { MODELS_CONFIG_SCHEMA, type ModelConfig, type ModelsConfig } from "./schema.js";
 
 /**
  * Default model configuration loaded from models.json.
@@ -17,18 +17,20 @@ interface EnvOverrides {
 			AgentId,
 			{
 				default?: string;
-				models?: string[];
+				models?: ModelConfig[];
 				defaultAnalysisLevel?: string;
+				defaultTimeoutSeconds?: number;
 			}
 		>
 	>;
 }
 
-function parseModelsList(value: string): string[] {
+function parseModelsList(value: string): ModelConfig[] {
 	return value
 		.split(",")
 		.map((s) => s.trim())
-		.filter((s) => s.length > 0);
+		.filter((s) => s.length > 0)
+		.map((name) => ({ name }));
 }
 
 export function readEnvOverrides(
@@ -43,6 +45,7 @@ export function readEnvOverrides(
 		const defaultModel = env[`${prefix}_DEFAULT`];
 		const modelsRaw = env[`${prefix}_MODELS`];
 		const analysisLevel = env[`${prefix}_ANALYSIS_LEVEL`];
+		const timeoutRaw = env[`${prefix}_TIMEOUT`];
 
 		const agentOverride: Record<string, unknown> = {};
 		let hasOverride = false;
@@ -58,6 +61,13 @@ export function readEnvOverrides(
 		if (analysisLevel !== undefined) {
 			agentOverride.defaultAnalysisLevel = analysisLevel;
 			hasOverride = true;
+		}
+		if (timeoutRaw !== undefined) {
+			const parsed = Number(timeoutRaw);
+			if (!Number.isNaN(parsed) && parsed > 0) {
+				agentOverride.defaultTimeoutSeconds = parsed;
+				hasOverride = true;
+			}
 		}
 
 		if (hasOverride) {
