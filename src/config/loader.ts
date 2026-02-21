@@ -1,4 +1,4 @@
-import defaultModels from "./models.json";
+import defaultModels from "./models.json" with { type: "json" };
 import { MODELS_CONFIG_SCHEMA, type ModelsConfig } from "./schema.js";
 
 /**

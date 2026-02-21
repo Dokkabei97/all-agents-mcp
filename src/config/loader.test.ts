@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { buildConfig, loadModelsConfig, readEnvOverrides, reloadModelsConfig } from "./loader.js";
-import defaultModels from "./models.json";
+import defaultModels from "./models.json" with { type: "json" };
 
 describe("models.json", () => {
 	const EXPECTED_AGENTS = ["claude", "codex", "gemini", "copilot"];
