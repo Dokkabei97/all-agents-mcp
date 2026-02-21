@@ -13,10 +13,7 @@ const SCHEMA = {
 		.optional()
 		.describe("Optional extraction/focus instruction (e.g. 'extract only the API table')"),
 	model: z.string().optional().describe(`Gemini model to use (default: ${DEFAULT_MODEL})`),
-	timeout: z
-		.number()
-		.optional()
-		.describe(`Timeout in milliseconds (default: ${DEFAULT_TIMEOUT})`),
+	timeout: z.number().optional().describe(`Timeout in milliseconds (default: ${DEFAULT_TIMEOUT})`),
 };
 
 export function buildFetchPrompt(url: string, instruction?: string): string {
