@@ -1,6 +1,6 @@
 {
 	"name": "all-agents-mcp",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"description": "All Agents MCP - Multi AI CLI Agent Orchestration Server",
 	"type": "module",
 	"main": "dist/index.js",

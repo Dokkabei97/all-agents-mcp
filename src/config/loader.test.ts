@@ -1,5 +1,28 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { buildConfig, loadModelsConfig, readEnvOverrides, reloadModelsConfig } from "./loader.js";
+import defaultModels from "./models.json";
+
+describe("models.json", () => {
+	const EXPECTED_AGENTS = ["claude", "codex", "gemini", "copilot"];
+
+	it("defines all 4 agents", () => {
+		expect(Object.keys(defaultModels.agents)).toEqual(EXPECTED_AGENTS);
+	});
+
+	it("each agent's default model is included in its models list", () => {
+		for (const [id, agent] of Object.entries(defaultModels.agents)) {
+			expect(agent.models, `${id}: default "${agent.default}" missing from models`).toContain(
+				agent.default,
+			);
+		}
+	});
+
+	it("each agent has at least one model", () => {
+		for (const [id, agent] of Object.entries(defaultModels.agents)) {
+			expect(agent.models.length, `${id} should have at least 1 model`).toBeGreaterThanOrEqual(1);
+		}
+	});
+});
 
 describe("readEnvOverrides", () => {
 	it("returns empty overrides when no env vars set", () => {

@@ -1,42 +1,11 @@
+import defaultModels from "./models.json";
 import { MODELS_CONFIG_SCHEMA, type ModelsConfig } from "./schema.js";
 
 /**
- * Hardcoded defaults matching the previous config/models.yaml values.
+ * Default model configuration loaded from models.json.
  * Override at runtime via AA_MCP_{AGENT}_{FIELD} environment variables.
  */
-const DEFAULT_CONFIG: ModelsConfig = {
-	agents: {
-		claude: {
-			default: "claude-opus-4.6",
-			models: ["claude-opus-4.6", "claude-sonnet-4.5", "claude-haiku-4.5"],
-		},
-		codex: {
-			default: "gpt-5.3-codex-spark",
-			defaultAnalysisLevel: "xhigh",
-			models: ["gpt-5.3-codex-spark", "gpt-5.3-codex", "gpt-5.2-codex-max", "gpt-5.2-codex"],
-		},
-		gemini: {
-			default: "gemini-3-pro-preview",
-			models: [
-				"gemini-3-pro-preview",
-				"gemini-3-flash-preview",
-				"gemini-2.5-pro",
-				"gemini-2.5-flash",
-			],
-		},
-		copilot: {
-			default: "claude-sonnet-4.5",
-			models: [
-				"claude-opus-4.5",
-				"claude-sonnet-4.5",
-				"claude-haiku-4.5",
-				"gpt-5.2-codex",
-				"gemini-3-pro-preview",
-				"gemini-3-flash-preview",
-			],
-		},
-	},
-};
+const DEFAULT_CONFIG: ModelsConfig = MODELS_CONFIG_SCHEMA.parse(defaultModels);
 
 const AGENT_IDS = ["claude", "codex", "gemini", "copilot"] as const;
 

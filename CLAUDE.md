@@ -71,6 +71,7 @@ All tools record interactions to the session store via `addEntry()`.
 - **Biome formatting**: Tab indentation, 100 char line width, double quotes, semicolons always.
 - **MCP stdout constraint**: Never write to stdout except via MCP SDK. All logging uses stderr via `logger`. This is the most critical invariant — violating it breaks the MCP protocol.
 - **Recursion guard**: The registry auto-excludes the caller agent (detected via CLI args → env vars → `process.env._`). This prevents infinite loops when all-agents-mcp is invoked from within an agent it orchestrates.
+- **Model config**: 에이전트별 모델 설정은 `src/config/models.json`에 정의. 신규 모델 추가 시 JSON만 편집 → `npm run build` → publish. 환경 변수 오버라이드(`AA_MCP_*`)는 그대로 유지.
 - **Tests**: Vitest tests are co-located alongside source as `*.test.ts`. Run with `npm test`.
 
 ## AIDE Methodology Reference [AIDE P10: Meta-Code as First-Class]
@@ -101,7 +102,7 @@ Do NOT add new dependencies without explicit approval. [AIDE P7]
 
 1. Create `src/agents/{name}-agent.ts` extending `BaseAgent`
 2. Add the agent ID to the `AgentId` union type in `src/agents/types.ts`
-3. Add agent defaults to `DEFAULT_CONFIG` in `src/config/loader.ts`
+3. Add agent defaults to `src/config/models.json`
 4. Register the factory in `src/agents/registry.ts` `agentFactories`
 5. Add caller detection in `src/utils/detect.ts` (`CALLER_ENV_MAP` + `process.env._` check)
 
