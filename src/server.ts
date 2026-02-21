@@ -8,6 +8,7 @@ import { registerCollaborateTool } from "./tools/collaborate.js";
 import { registerDebugWithTool } from "./tools/debug-with.js";
 import { registerDelegateTaskTool } from "./tools/delegate.js";
 import { registerExplainWithTool } from "./tools/explain-with.js";
+import { registerFetchPageTool } from "./tools/fetch-page.js";
 import { registerGenerateTestTool } from "./tools/generate-test.js";
 import { registerListAgentsTool } from "./tools/list-agents.js";
 import { registerListModelsTool } from "./tools/list-models.js";
@@ -26,7 +27,7 @@ export function createServer(): McpServer {
 		version: "1.0.0",
 	});
 
-	// Register 13 tools
+	// Register 14 tools
 	registerAskAgentTool(server);
 	registerAskAllTool(server);
 	registerDelegateTaskTool(server);
@@ -35,6 +36,7 @@ export function createServer(): McpServer {
 	registerReviewCodeTool(server);
 	registerDebugWithTool(server);
 	registerExplainWithTool(server);
+	registerFetchPageTool(server);
 	registerGenerateTestTool(server);
 	registerRefactorWithTool(server);
 	registerListAgentsTool(server);
