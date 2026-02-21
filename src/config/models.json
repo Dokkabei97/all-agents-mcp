@@ -2,51 +2,59 @@
 	"agents": {
 		"claude": {
 			"default": "claude-opus-4.6",
-			"models": ["claude-opus-4.6", "claude-sonnet-4.6", "claude-haiku-4.5"]
+			"defaultTimeoutSeconds": 120,
+			"models": [
+				{ "name": "claude-opus-4.6", "timeoutSeconds": 300 },
+				{ "name": "claude-sonnet-4.6" },
+				{ "name": "claude-haiku-4.5" }
+			]
 		},
 		"codex": {
 			"default": "gpt-5.3-codex-spark",
 			"defaultAnalysisLevel": "xhigh",
+			"defaultTimeoutSeconds": 120,
 			"models": [
-				"gpt-5.3-codex-spark",
-				"gpt-5.3-codex",
-				"gpt-5.2-codex",
-				"gpt-5.2",
-				"gpt-5.1-codex-max",
-				"gpt-5.1-codex-mini"
+				{ "name": "gpt-5.3-codex-spark", "timeoutSeconds": 480 },
+				{ "name": "gpt-5.3-codex", "timeoutSeconds": 480 },
+				{ "name": "gpt-5.2-codex", "timeoutSeconds": 300 },
+				{ "name": "gpt-5.2" },
+				{ "name": "gpt-5.1-codex-max", "timeoutSeconds": 300 },
+				{ "name": "gpt-5.1-codex-mini" }
 			]
 		},
 		"gemini": {
 			"default": "gemini-3-pro-preview",
+			"defaultTimeoutSeconds": 120,
 			"models": [
-				"gemini-3-pro-preview",
-				"gemini-3-flash-preview",
-				"gemini-2.5-pro",
-				"gemini-2.5-flash",
-				"gemini-2.5-flash-lite"
+				{ "name": "gemini-3-pro-preview", "timeoutSeconds": 300 },
+				{ "name": "gemini-3-flash-preview" },
+				{ "name": "gemini-2.5-pro" },
+				{ "name": "gemini-2.5-flash" },
+				{ "name": "gemini-2.5-flash-lite" }
 			]
 		},
 		"copilot": {
 			"default": "claude-sonnet-4.6",
+			"defaultTimeoutSeconds": 120,
 			"models": [
-				"claude-opus-4.6",
-				"claude-opus-4.6-fast",
-				"claude-opus-4.5",
-				"claude-sonnet-4.6",
-				"claude-sonnet-4.5",
-				"claude-sonnet-4.0",
-				"claude-haiku-4.5",
-				"gpt-5.3-codex",
-				"gpt-5.2-codex",
-				"gpt-5.2",
-				"gpt-5.1-codex-max",
-				"gpt-5.1-codex",
-				"gpt-5.1-codex-mini",
-				"gpt-5.1",
-				"gpt-5-mini",
-				"gpt-4.1",
-				"gemini-3-pro-preview",
-				"gemini-3-flash-preview"
+				{ "name": "claude-opus-4.6", "timeoutSeconds": 480 },
+				{ "name": "claude-opus-4.6-fast", "timeoutSeconds": 300 },
+				{ "name": "claude-opus-4.5", "timeoutSeconds": 480 },
+				{ "name": "claude-sonnet-4.6" },
+				{ "name": "claude-sonnet-4.5" },
+				{ "name": "claude-sonnet-4.0" },
+				{ "name": "claude-haiku-4.5" },
+				{ "name": "gpt-5.3-codex", "timeoutSeconds": 480 },
+				{ "name": "gpt-5.2-codex", "timeoutSeconds": 300 },
+				{ "name": "gpt-5.2" },
+				{ "name": "gpt-5.1-codex-max", "timeoutSeconds": 300 },
+				{ "name": "gpt-5.1-codex" },
+				{ "name": "gpt-5.1-codex-mini" },
+				{ "name": "gpt-5.1" },
+				{ "name": "gpt-5-mini" },
+				{ "name": "gpt-4.1" },
+				{ "name": "gemini-3-pro-preview", "timeoutSeconds": 300 },
+				{ "name": "gemini-3-flash-preview" }
 			]
 		}
 	}

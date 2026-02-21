@@ -71,7 +71,8 @@ All tools record interactions to the session store via `addEntry()`.
 - **Biome formatting**: Tab indentation, 100 char line width, double quotes, semicolons always.
 - **MCP stdout constraint**: Never write to stdout except via MCP SDK. All logging uses stderr via `logger`. This is the most critical invariant — violating it breaks the MCP protocol.
 - **Recursion guard**: The registry auto-excludes the caller agent (detected via CLI args → env vars → `process.env._`). This prevents infinite loops when all-agents-mcp is invoked from within an agent it orchestrates.
-- **Model config**: 에이전트별 모델 설정은 `src/config/models.json`에 정의. 신규 모델 추가 시 JSON만 편집 → `npm run build` → publish. 환경 변수 오버라이드(`AA_MCP_*`)는 그대로 유지.
+- **Model config**: 에이전트별 모델 설정은 `src/config/models.json`에 정의. `models`는 `{name, timeoutSeconds?}` 객체 배열. 신규 모델 추가 시 JSON만 편집 → `npm run build` → publish. 환경 변수 오버라이드(`AA_MCP_*`)는 그대로 유지.
+- **Per-model timeout**: 모델별 타임아웃 우선순위: ①호출자 `options.timeout` → ②`models.json`의 `model.timeoutSeconds`×1000 → ③`agent.defaultTimeoutSeconds`×1000 → ④글로벌 기본값 `120_000ms`. 환경변수 `AA_MCP_{AGENT}_TIMEOUT`으로 에이전트 기본 타임아웃(초) 오버라이드 가능.
 - **Tests**: Vitest tests are co-located alongside source as `*.test.ts`. Run with `npm test`.
 
 ## AIDE Methodology Reference [AIDE P10: Meta-Code as First-Class]

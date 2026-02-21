@@ -27,18 +27,20 @@ export function registerListModelsTool(server: McpServer): void {
 
 				lines.push(`### ${agent.displayName}`);
 				lines.push(`Default: **${agent.getDefaultModel()}**\n`);
-				for (const model of agent.getModels()) {
-					const isDefault = model === agent.getDefaultModel() ? " (default)" : "";
-					lines.push(`- ${model}${isDefault}`);
+				for (const mc of agent.getModelConfigs()) {
+					const isDefault = mc.name === agent.getDefaultModel() ? " (default)" : "";
+					const timeout = mc.timeoutSeconds ? ` (timeout: ${mc.timeoutSeconds}s)` : "";
+					lines.push(`- ${mc.name}${isDefault}${timeout}`);
 				}
 			} else {
 				const agents = getAllRegisteredAgents();
 				for (const agent of agents) {
 					lines.push(`### ${agent.displayName} (\`${agent.id}\`)`);
 					lines.push(`Default: **${agent.getDefaultModel()}**\n`);
-					for (const model of agent.getModels()) {
-						const isDefault = model === agent.getDefaultModel() ? " (default)" : "";
-						lines.push(`- ${model}${isDefault}`);
+					for (const mc of agent.getModelConfigs()) {
+						const isDefault = mc.name === agent.getDefaultModel() ? " (default)" : "";
+						const timeout = mc.timeoutSeconds ? ` (timeout: ${mc.timeoutSeconds}s)` : "";
+						lines.push(`- ${mc.name}${isDefault}${timeout}`);
 					}
 					lines.push("");
 				}

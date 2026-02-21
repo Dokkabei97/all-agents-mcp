@@ -323,14 +323,14 @@ This project is built following [AIDE (Agent-Informed Development Engineering) v
 
 ## Test Status
 
-All agents have been tested and verified **except Copilot CLI**, which is pending integration testing.
+All agents have been tested and verified.
 
 | Agent | Status |
 |-------|--------|
 | Claude Code | Tested |
 | Codex | Tested |
 | Gemini CLI | Tested |
-| Copilot CLI | Not yet tested |
+| Copilot CLI | Tested |
 
 ## Architecture
 
