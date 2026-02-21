@@ -74,7 +74,7 @@ describe("buildConfig", () => {
 		const config = buildConfig({});
 		expect(config.agents.claude.default).toBe("claude-opus-4.6");
 		expect(config.agents.codex.defaultAnalysisLevel).toBe("xhigh");
-		expect(config.agents.gemini.models).toHaveLength(4);
+		expect(config.agents.gemini.models).toHaveLength(defaultModels.agents.gemini.models.length);
 	});
 
 	it("overrides specific fields while preserving others", () => {
