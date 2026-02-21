@@ -81,8 +81,7 @@ Some multi-agent tools work by extracting OAuth tokens from other AI services an
 > You can also add the plugin repository directly: `/plugin marketplace add Dokkabei97/all-agents-mcp`
 
 This installs all-agents-mcp as a Claude Code plugin, giving you:
-- 6 skills (`/all-agents-mcp:ask`, `/all-agents-mcp:ask-all`, `/all-agents-mcp:delegate`, `/all-agents-mcp:review`, `/all-agents-mcp:debug`, `/all-agents-mcp:agents`)
-- 2 commands (`/all-agents-mcp:status`, `/all-agents-mcp:models`)
+- 8 skills (`/all-agents-mcp:ask`, `/all-agents-mcp:ask-all`, `/all-agents-mcp:delegate`, `/all-agents-mcp:review`, `/all-agents-mcp:debug`, `/all-agents-mcp:agents`, `/all-agents-mcp:aa-models`, `/all-agents-mcp:aa-fetch`)
 - Automatic MCP server connection via `npx`
 - Session start health checks
 
@@ -176,9 +175,9 @@ codex mcp add all-agents-mcp -- node /path/to/all-agents-mcp/dist/index.js
 gemini mcp add all-agents-mcp node /path/to/all-agents-mcp/dist/index.js
 ```
 
-## Plugin Skills & Commands
+## Plugin Skills
 
-When installed as a Claude Code plugin, the following skills and commands are available:
+When installed as a Claude Code plugin, the following skills are available:
 
 ### Skills
 
@@ -190,15 +189,10 @@ When installed as a Claude Code plugin, the following skills and commands are av
 | `review` | `/all-agents-mcp:review codex [focus]` | Code review by an external agent |
 | `debug` | `/all-agents-mcp:debug gemini <error>` | Debug an error with an external agent |
 | `agents` | `/all-agents-mcp:agents` | Show all agents status and health |
+| `aa-models` | `/all-agents-mcp:aa-models` | List available models for all agents |
+| `aa-fetch` | `/all-agents-mcp:aa-fetch <url> [instruction]` | Fetch web page content via Gemini CLI |
 
-### Commands
-
-| Command | Usage | Description |
-|---------|-------|-------------|
-| `status` | `/all-agents-mcp:status` | Quick health check of all agents |
-| `models` | `/all-agents-mcp:models` | List available models for all agents |
-
-## Tools (13)
+## Tools (14)
 
 ### Core Tools
 
@@ -224,6 +218,12 @@ When installed as a Claude Code plugin, the following skills and commands are av
 | `explain_with` | Get code explanation at `brief` or `detailed` level. |
 | `generate_test` | Generate tests with optional framework selection (`jest`, `vitest`, `pytest`, `kotest`). |
 | `refactor_with` | Refactor code with a goal: `performance`, `readability`, or `modularity`. |
+
+### Web Tools
+
+| Tool | Description |
+|------|-------------|
+| `fetch_page` | Fetch web page content via Gemini CLI's native browsing. Retrieve and extract content from any URL. |
 
 ### Info Tools
 
@@ -346,7 +346,7 @@ all-agents-mcp/
 │   │   ├── copilot-agent.ts
 │   │   └── registry.ts  #   Detection, registration, recursion guard
 │   │
-│   ├── tools/           # 13 MCP tool definitions
+│   ├── tools/           # 14 MCP tool definitions
 │   ├── orchestrator/    # Parallel execution, complexity analysis, verification
 │   ├── session/         # File-based session storage
 │   ├── resources/       # 3 MCP resource definitions
