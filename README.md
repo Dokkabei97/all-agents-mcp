@@ -11,7 +11,7 @@
 > The core functionality of this project has been merged into **[hardened-claude-code](https://github.com/Dokkabei97/hardened-claude-code)** as Skills. The same multi-agent orchestration can now be achieved more concisely and maintainably through `CLAUDE.md` configuration and Skills.
 >
 > **Migration guide:**
-> - Tools like `ask_agent`, `ask_all`, `delegate_task` → replaced by Skills in hardened-claude-code (`/ask`, `/ask-all`, `/delegate`, etc.)
+> - Tools like `ask_agent`, `ask_all`, `delegate_task` → replaced by Skills in hardened-claude-code (`/with`, `/web-fetch`, etc.)
 > - No MCP server setup required — Skills invoke CLIs directly
 > - Environment variable model config → consolidated into declarative `CLAUDE.md` settings
 
