@@ -6,18 +6,18 @@
 
 > **⚠️ Archived — This project is no longer actively maintained.**
 >
-> AI agent CLI 생태계가 빠르게 발전하면서, MCP 서버를 통해 에이전트 CLI를 호출하는 방식보다 **CLI 직접 호출 + Skills 기반 통합**이 더 실용적이고 주류가 되었습니다.
+> As the AI agent CLI ecosystem has evolved, **direct CLI invocation + Skills-based integration** has become the more practical and mainstream approach over wrapping agent CLIs behind an MCP server.
 >
-> 이 프로젝트의 핵심 기능은 **[hardened-claude-code](https://github.com/Dokkabei97/hardened-claude-code)** 레포지토리의 Skills로 병합되었습니다. `CLAUDE.md` 설정과 Skills를 통해 동일한 멀티 에이전트 오케스트레이션을 더 간결하고 유지보수하기 쉬운 방식으로 구현할 수 있습니다.
+> The core functionality of this project has been merged into **[hardened-claude-code](https://github.com/Dokkabei97/hardened-claude-code)** as Skills. The same multi-agent orchestration can now be achieved more concisely and maintainably through `CLAUDE.md` configuration and Skills.
 >
 > **Migration guide:**
-> - `ask_agent`, `ask_all`, `delegate_task` 등의 도구 → hardened-claude-code의 Skills (`/ask`, `/ask-all`, `/delegate` 등)로 대체
-> - MCP 서버 설정 불필요 — Skills가 CLI를 직접 호출
-> - 환경 변수 기반 모델 설정 → `CLAUDE.md` 내 선언적 설정으로 통합
+> - Tools like `ask_agent`, `ask_all`, `delegate_task` → replaced by Skills in hardened-claude-code (`/ask`, `/ask-all`, `/delegate`, etc.)
+> - No MCP server setup required — Skills invoke CLIs directly
+> - Environment variable model config → consolidated into declarative `CLAUDE.md` settings
 
 ---
 
-*아래는 원본 README입니다 (참고용).*
+*Original README below for reference.*
 
 ---
 
